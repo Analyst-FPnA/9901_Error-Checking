@@ -41,7 +41,7 @@ if uploaded_file is not None:
             # Filter kolom-kolom yang berawalan "Unnamed:"
             kolom_unnamed = df_9901.filter(regex='^Unnamed:').columns
             # Hapus kolom-kolom tersebut
-            df_9901.drop(columns=kolom_unnamed, inplace=True)
+            df_9901 = df_9901.drop(columns=kolom_unnamed)
 
             # Filter the codes that start with '1' or '2'
             df_9901 = df_9901[df_9901['Kode #'].astype(str).str.startswith(('1', '2', '4', '9'))] #'1', '2', '4', '9'
@@ -123,7 +123,7 @@ if uploaded_file is not None:
             df_database_barang_cek        = df_database_barang_cek[df_database_barang_cek['Cek']  ==  "Cek"]
 
             df_database_barang_cek        = df_database_barang_cek.loc[:,['Kode #','Nama Barang']]
-            df_database_barang_cek
+            #df_database_barang_cek
 
             df_database_barang = df_database_barang.rename(columns={'Nama Barang':'New-Nama Barang','Kode #Nama Barang':'Kode Nama Barang'})
             df_kode_namabarang = df_database_barang.loc[:,['Kode Nama Barang']].drop_duplicates()
