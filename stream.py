@@ -71,8 +71,8 @@ if uploaded_file is not None:
             df_9901_kode['Count Kode'] = df_9901_kode.groupby('Kode')['Kode'].transform('count')
             df_9901_kode = df_9901_kode.sort_values(by='Count Kode', ascending=False).drop_duplicates('Nomor #').reset_index(drop=True)
 
-            df_9901_kode[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'])[0] in row['Nama Gudang'], axis=1)) 
-                    | (df_9901_kode['Nama Gudang']=='')]
+            #df_9901_kode[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'])[0] in row['Nama Gudang'], axis=1)) 
+            #       | (df_9901_kode['Nama Gudang']=='')]
 
             df_9901_kode.loc[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'])[0] in row['Nama Gudang'], axis=1)) 
                     | (df_9901_kode['Nama Gudang']==''), ['Nama Cabang', 'Nama Gudang']] = ''
