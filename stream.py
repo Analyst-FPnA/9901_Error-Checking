@@ -100,20 +100,13 @@ if uploaded_file is not None:
                     print(f"File downloaded successfully and saved to {save_path}")
                 else:
                     print(f"Failed to download file. Status code: {response.status_code}")
-            url = 'https://raw.githubusercontent.com/ferifirmansah05/9901_Errorchecking/main/database barang.csv'
+            url = 'https://raw.githubusercontent.com/Analyst-FPnA/9901_Error-Checking/main/database barang.csv'
 
             # Path untuk menyimpan file yang diunduh
             save_path = 'database barang.csv'
             
             # Unduh file dari GitHub
             download_file_from_github(url, save_path)
-            
-            # Muat model dari file yang diunduh
-            if os.path.exists(save_path):
-                df_prov = load_excel(save_path)
-                print("Model loaded successfully")
-            else:
-                print("Model file does not exist")
                 
             df_database_barang = pd.read_csv(f'database barang.csv').fillna('')
             
