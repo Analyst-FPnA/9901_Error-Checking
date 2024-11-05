@@ -148,8 +148,8 @@ if uploaded_file is not None:
             df_satuan = df_9901.drop(columns=['Kode Cabang'])
             df_satuan = df_satuan[df_satuan['Keterangan'] != "Free Item"]
 
-            df_satuan = df_satuan.merge(df_satuan.groupby(['Nama Cabang','Nama Barang']).agg({'#Prime.NetPrice':'mean','Kategori Barang':'count'}).reset_index().rename(columns={'Kategori Barang':'Jumlah xTransaksi','#Prime.NetPrice':'weight_avg_#Prime.NetPrice'}),
-                                        on =['Nama Cabang','Nama Barang'], how='left')
+            df_satuan = df_satuan.merge(df_satuan.groupby(['Nama Cabang','Nama Barang','Kategori Pemasok']).agg({'#Prime.NetPrice':'mean','Kategori Barang':'count'}).reset_index().rename(columns={'Kategori Barang':'Jumlah xTransaksi','#Prime.NetPrice':'weight_avg_#Prime.NetPrice'}),
+                                        on =['Nama Cabang','Nama Barang','Kategori Pemasok'], how='left')
             df_satuan['percentage_#Prime.NetPrice'] = df_satuan['#Prime.NetPrice']/df_satuan['weight_avg_#Prime.NetPrice']
 
             df_satuan1  =   df_satuan[(df_satuan['Kode #'].astype(str).str.startswith('1')) &
