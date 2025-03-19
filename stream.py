@@ -74,7 +74,7 @@ if uploaded_file is not None:
             #df_9901_kode[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'])[0] in row['Nama Gudang'], axis=1)) 
             #       | (df_9901_kode['Nama Gudang']=='')]
 
-            df_9901_kode.loc[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'])[0] in row['Nama Gudang'], axis=1)) 
+            df_9901_kode.loc[(~ df_9901_kode.apply(lambda row: re.findall(r'(\w+)$',row['Nama Cabang'].replace(' (NON-AKTIF)',''))[0] in row['Nama Gudang'], axis=1)) 
                     | (df_9901_kode['Nama Gudang']==''), ['Nama Cabang', 'Nama Gudang']] = ''
 
             df_9901_kode = df_9901_kode.rename(columns={'Nama Cabang':'New-Nama Cabang',
